@@ -2,9 +2,7 @@ package gunstar.api.trading;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gunstar.api.BaseResponse;
-
-import java.util.Comparator;
-import java.util.Date;
+import gunstar.api.DetailedDate;
 
 public class Order extends BaseResponse {
 
@@ -17,7 +15,7 @@ public class Order extends BaseResponse {
     public final OrderType type;
     public final int id;
     public final String account;
-    public final Date ts;
+    public final DetailedDate ts;
     public final OrderResponseFill[] fills;
     public final int totalFilled;
     public final boolean open;
@@ -35,7 +33,7 @@ public class Order extends BaseResponse {
             @JsonProperty("orderType") OrderType type,
             @JsonProperty("id") int id,
             @JsonProperty("account") String account,
-            @JsonProperty("ts") Date ts,
+            @JsonProperty("ts") String ts,
             @JsonProperty("fills") OrderResponseFill[] fills,
             @JsonProperty("totalFilled") int totalFilled,
             @JsonProperty("open") boolean open
@@ -51,7 +49,7 @@ public class Order extends BaseResponse {
         this.type = type;
         this.id = id;
         this.account = account;
-        this.ts = ts;
+        this.ts = parse(ts);
         this.fills = fills;
         this.totalFilled = totalFilled;
         this.open = open;

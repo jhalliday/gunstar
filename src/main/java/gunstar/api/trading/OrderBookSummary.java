@@ -2,8 +2,7 @@ package gunstar.api.trading;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gunstar.api.BaseResponse;
-
-import java.util.Date;
+import gunstar.api.DetailedDate;
 
 public class OrderBookSummary extends BaseResponse {
 
@@ -13,7 +12,7 @@ public class OrderBookSummary extends BaseResponse {
     public final OrderBookRecord[] bids;
     public final OrderBookRecord[] asks;
 
-    public final Date ts;
+    public final DetailedDate ts;
 
     public OrderBookSummary(
             @JsonProperty("ok") boolean ok,
@@ -23,7 +22,7 @@ public class OrderBookSummary extends BaseResponse {
             @JsonProperty("symbol") String symbol,
             @JsonProperty("bids") OrderBookRecord[] bids,
             @JsonProperty("asks") OrderBookRecord[] asks,
-            @JsonProperty("ts") Date ts
+            @JsonProperty("ts") String ts
     ) {
         super(ok, error);
 
@@ -31,6 +30,6 @@ public class OrderBookSummary extends BaseResponse {
         this.symbol = symbol;
         this.bids = bids;
         this.asks = asks;
-        this.ts = ts;
+        this.ts = parse(ts);
     }
 }

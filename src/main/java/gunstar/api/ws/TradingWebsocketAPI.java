@@ -141,11 +141,17 @@ public class TradingWebsocketAPI {
                                 value = GunstarContext.objectMapper.readValue(message, clazz);
                                 apiLogger.debug(" <<< "+message);
                                 consumer.onEvent(value);
-                            } catch(IOException e) {
+                            } catch(Exception e) {
                                 apiLogger.warn("ignoring websocket message that can't be deserialized: "+message, e);
                             }
                         }
                     });
+                }
+
+                @Override
+                public void onClose(Session session, CloseReason closeReason) {
+                    super.onClose(session, closeReason);
+                    apiLogger.warn("close!");
                 }
             }, cec, new URI(url));
 

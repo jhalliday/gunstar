@@ -2,8 +2,7 @@ package gunstar.api.trading;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gunstar.api.BaseResponse;
-
-import java.util.Date;
+import gunstar.api.DetailedDate;
 
 public class Quote extends BaseResponse {
 
@@ -19,9 +18,9 @@ public class Quote extends BaseResponse {
 
     public final int last;
     public final int lastSize;
-    public final Date lastTrade;
+    public final DetailedDate lastTrade;
 
-    public final Date quoteTime;
+    public final DetailedDate quoteTime;
 
     public Quote(
             @JsonProperty("ok") boolean ok,
@@ -37,8 +36,8 @@ public class Quote extends BaseResponse {
             @JsonProperty("askDepth") int askDepth,
             @JsonProperty("last") int last,
             @JsonProperty("lastSize") int lastSize,
-            @JsonProperty("lastTrade") Date lastTrade,
-            @JsonProperty("quoteTime") Date quoteTime
+            @JsonProperty("lastTrade") String lastTrade,
+            @JsonProperty("quoteTime") String quoteTime
     ) {
         super(ok, error);
 
@@ -52,7 +51,7 @@ public class Quote extends BaseResponse {
         this.askDepth = askDepth;
         this.last = last;
         this.lastSize = lastSize;
-        this.lastTrade = lastTrade;
-        this.quoteTime = quoteTime;
+        this.lastTrade = parse(lastTrade);
+        this.quoteTime = parse(quoteTime);
     }
 }

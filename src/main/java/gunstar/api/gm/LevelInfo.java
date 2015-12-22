@@ -13,6 +13,7 @@ public class LevelInfo extends BaseResponse {
     public final int secondsPerTradingDay;
     public final String[] tickers;
     public final String[] venues;
+    public final Map<String,Long> balances;
 
     public LevelInfo(
             @JsonProperty("ok") boolean ok,
@@ -23,7 +24,8 @@ public class LevelInfo extends BaseResponse {
             @JsonProperty("instructions") Map<String, String> instructions,
             @JsonProperty("secondsPerTradingDay") int secondsPerTradingDay,
             @JsonProperty("tickers") String[] tickers,
-            @JsonProperty("venues") String[] venues
+            @JsonProperty("venues") String[] venues,
+            @JsonProperty("balances") Map<String,Long> balances
     ) {
         super(ok, error);
 
@@ -33,5 +35,6 @@ public class LevelInfo extends BaseResponse {
         this.secondsPerTradingDay = secondsPerTradingDay;
         this.tickers = tickers;
         this.venues = venues;
+        this.balances = balances;
     }
 }

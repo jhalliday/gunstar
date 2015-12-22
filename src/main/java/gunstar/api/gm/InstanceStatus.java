@@ -9,6 +9,7 @@ public class InstanceStatus extends BaseResponse {
     public final String state;
     public final boolean done;
     public final InstanceStatusDetails details;
+    public final InstanceStatusFlash flash;
 
     public InstanceStatus(
             @JsonProperty("ok") boolean ok,
@@ -17,12 +18,15 @@ public class InstanceStatus extends BaseResponse {
             @JsonProperty("id") int id,
             @JsonProperty("state") String state,
             @JsonProperty("done") boolean done,
-            @JsonProperty("details") InstanceStatusDetails details
+            @JsonProperty("details") InstanceStatusDetails details,
+            @JsonProperty("flash") InstanceStatusFlash flash
     ) {
         super(ok, error);
+
         this.id = id;
         this.state = state;
         this.done = done;
         this.details = details;
+        this.flash = flash;
     }
 }

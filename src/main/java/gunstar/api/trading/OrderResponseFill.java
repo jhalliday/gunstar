@@ -1,23 +1,22 @@
 package gunstar.api.trading;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import gunstar.api.DetailedDate;
 import gunstar.api.JsonPOJO;
-
-import java.util.Date;
 
 public class OrderResponseFill extends JsonPOJO {
 
     public final int price;
     public final int qty;
-    public final Date ts;
+    public final DetailedDate ts;
 
     public OrderResponseFill(
             @JsonProperty("price") int price,
             @JsonProperty("qty") int qty,
-            @JsonProperty("ts") Date ts
+            @JsonProperty("ts") String ts
     ) {
         this.price = price;
         this.qty = qty;
-        this.ts = ts;
+        this.ts = parse(ts);
     }
 }

@@ -38,7 +38,9 @@ public abstract class AbstractAPI {
     protected <T extends BaseResponse> T post(String url, String request, Class<T> clazz) {
         if (logger != null && logger.isDebugEnabled()) {
             logger.debug(" >>> POST " + url);
-            logger.debug(" >>> BODY " + request);
+            if(request != null) {
+                logger.debug(" >>> BODY " + request);
+            }
         }
 
         T response = restTemplate.postForObject(url, request, clazz);

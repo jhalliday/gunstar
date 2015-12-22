@@ -3,6 +3,7 @@ package gunstar.api;
 import gunstar.GunstarContext;
 
 import java.io.IOException;
+import java.util.Date;
 
 public abstract class JsonPOJO {
 
@@ -13,5 +14,9 @@ public abstract class JsonPOJO {
         } catch (IOException e) {
             return super.toString();
         }
+    }
+
+    public DetailedDate parse(String date) {
+        return DetailedDate.parse(date);
     }
 }

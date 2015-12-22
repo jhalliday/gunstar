@@ -2,8 +2,7 @@ package gunstar.api.trading;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gunstar.api.BaseResponse;
-
-import java.util.Date;
+import gunstar.api.DetailedDate;
 
 public class Execution extends BaseResponse {
 
@@ -15,7 +14,7 @@ public class Execution extends BaseResponse {
     public final int incomingId;
     public final int price;
     public final int filled;
-    public final Date filledAt;
+    public final DetailedDate filledAt;
     public final boolean standingComplete;
     public final boolean incomingComplete;
 
@@ -31,7 +30,7 @@ public class Execution extends BaseResponse {
             @JsonProperty("incomingId") int incomingId,
             @JsonProperty("price") int price,
             @JsonProperty("filled") int filled,
-            @JsonProperty("filledAt") Date filledAt,
+            @JsonProperty("filledAt") String filledAt,
             @JsonProperty("standingComplete") boolean standingComplete,
             @JsonProperty("incomingComplete") boolean incomingComplete
     ) {
@@ -45,7 +44,7 @@ public class Execution extends BaseResponse {
         this.incomingId = incomingId;
         this.price = price;
         this.filled = filled;
-        this.filledAt = filledAt;
+        this.filledAt = parse(filledAt);
         this.standingComplete = standingComplete;
         this.incomingComplete = incomingComplete;
     }
